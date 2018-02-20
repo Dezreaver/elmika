@@ -59,59 +59,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a href="#">Project Two</a>
-                                </h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-                                    numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi
-                                    itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a href="#">Project Three</a>
-                                </h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-                                    numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi
-                                    itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a href="#">Project Four</a>
-                                </h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-                                    numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi
-                                    itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="#">Project One</a></li>
-                        <li class="list-group-item"><a href="#">Project Two</a></li>
-                        <li class="list-group-item"><a href="#">Project Three</a></li>
-                        <li class="list-group-item"><a href="#">Project Four</a></li>
-                        <li class="list-group-item"><a href="#">Project Five</a></li>
-                        <li class="list-group-item"><a href="#">Project Six</a></li>
-                    </ul>
-                </div>
-            </div>
+
+            <?php include "includes/sidebar.php"?>
+
         </div>
 
     </section>

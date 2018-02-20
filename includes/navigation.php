@@ -1,3 +1,5 @@
+<?php include "includes/db.php"; ?>
+
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
     <div class="container">
         <a class="navbar-brand" href="#">
@@ -9,11 +11,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-                <a class="nav-item nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="products.php">Products</a>
-                <a class="nav-item nav-link" href="about.php">About Us</a>
-                <a class="nav-item nav-link" href="representatives.php">Representatives</a>
-                <a class="nav-item nav-link" href="contacts.php">Contacts</a>
+
+                <?php
+
+                    $query = "SELECT * FROM navigation";
+                    $navItems = mysqli_query($connection, $query);
+
+                    while($row = mysqli_fetch_assoc($navItems)) {
+                        $navTitle = $row['nav_title'];
+
+                        echo "<a class=\"nav-item nav-link\" href=\"#\">{$navTitle}</a>";
+                    }
+
+                ?>
+
             </div>
         </div>
     </div>
