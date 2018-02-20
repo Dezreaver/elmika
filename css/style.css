@@ -1,0 +1,102 @@
+html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    padding-top: 66px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+/* Navigation */
+
+nav {
+    border-bottom: 2px solid #0094FA;
+}
+
+#slogan {
+    background-color: #0094FA;
+    padding: 5px 0;
+}
+
+/* Carousel */
+
+
+
+/* Main */
+
+#main-content {
+    flex: 1 0 auto;
+}
+
+#news {
+    padding: 50px 20px;
+
+}
+
+#news h1 {
+    font-size: 3em;
+    padding-bottom: 30px;
+}
+
+#news h2 a {
+    color: #0094FA;
+}
+
+#news .col-md-6 {
+    padding: 0px 15px 15px 15px;
+}
+
+.card {
+    padding:0;
+    margin-bottom: 20px;
+    transition: 0.15s ease-in-out;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+
+/* Bottom Content */
+
+#bottom-content {
+    background-color: #343434;
+    color: #fff;
+}
+
+#bottom-content > .container {
+    padding: 30px;
+}
+
+#bottom-content li {
+    list-style: none;
+}
+
+/* Footer */
+
+footer {
+    background-color: #121212;
+    color: #fff;
+    padding: 10px 0;
+}
+
+/* Text */
+
+nav a.nav-link {
+    text-transform: uppercase;
+}
+
+#slogan h3 {
+    color: #fff;
+    font-size: 1.5em;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+#bottom-content p, li {
+    font-size: 0.9em;
+}
