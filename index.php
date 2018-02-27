@@ -1,10 +1,10 @@
 <!-- Header -->
 
-<?php include "includes/header.php" ?>
+<?php include "includes/header.php"; ?>
 
 <!-- Navigation -->
 
-<?php include "includes/navigation.php" ?>
+<?php include "includes/navigation.php"; ?>
 
 <div id="main-content" class="container">
 
@@ -46,19 +46,34 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="row">
+
+                <?php
+
+                    $query = "SELECT * FROM products";
+                    $allProducts = mysqli_query($connection, $query);
+
+                    while($row = mysqli_fetch_assoc($allProducts)) {
+
+                        $post_title = $row['post_title'];
+                        $post_image = $row['post_image'];
+                        $post_content = $row['post_content'];
+
+                ?>
+
                     <div class="col-md-6">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                            <a href="#"><img class="card-img-top" src="images/products/<?php echo $post_image; ?>" alt=""></a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">Project One</a>
+                                    <a href="#"><?php echo $post_title; ?></a>
                                 </h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-                                    numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi
-                                    itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+                                <p class="card-text"><?php echo $post_content; ?></p>
                             </div>
                         </div>
                     </div>
+
+
+                <?php } ?>
                 </div>
             </div>
 
