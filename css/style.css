@@ -32,9 +32,8 @@ nav {
     flex: 1 0 auto;
 }
 
-#news {
+#news, #about_us {
     padding: 50px 20px;
-
 }
 
 #news h1 {
@@ -61,6 +60,15 @@ nav {
     transform: translateY(-10px) scale(1.02);
 }
 
+/*Representatives*/
+
+#rep-button-block {
+    padding-top: 50px;
+}
+
+.card-holder {
+    float: none; margin: 0 auto;
+}
 
 /* Bottom Content */
 

@@ -1,5 +1,3 @@
-<?php include "includes/db.php"; ?>
-
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
     <div class="container">
         <a class="navbar-brand" href="#">
@@ -13,17 +11,23 @@
             <div class="navbar-nav ml-auto">
 
                 <?php
-
                     $query = "SELECT * FROM navigation";
                     $navItems = mysqli_query($connection, $query);
 
+                    $rows = [];
                     while($row = mysqli_fetch_assoc($navItems)) {
-                        $navTitle = $row['nav_title'];
-
-                        echo "<a class=\"nav-item nav-link\" href=\"#\">{$navTitle}</a>";
+                        $rows[] = [
+                            'title' => $row['nav_title'],
+                            'link' => $row['nav_link']
+                        ];
                     }
-
                 ?>
+
+                <?php foreach($rows as $row):?>
+
+                        <a class="nav-item nav-link" href="<?=$row['link']; ?>"><?=$row['title']; ?></a>
+
+                <?php endforeach; ?>
 
             </div>
         </div>

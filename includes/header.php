@@ -1,3 +1,6 @@
+<?php include "db.php"; ?>
+<?php include "functions.php"; ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,3 +13,7 @@
     <title>Elmika</title>
 </head>
 <body>
+
+<!--NAVIGATION-->
+
+<?php include "includes/navigation.php"; ?>
