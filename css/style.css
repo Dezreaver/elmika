@@ -108,3 +108,16 @@ nav a.nav-link {
 #bottom-content p, li {
     font-size: 0.9em;
 }
+
+
+/*Experiments*/
+
+.main-img img,
+.imgs img{
+    width: 100%;
+}
+.imgs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}

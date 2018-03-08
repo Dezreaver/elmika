@@ -67,4 +67,72 @@ function listRepresentatives()
     return $result;
 }
 
+//Products page display, product page and model variants
+function allProductsLogic($fquery)
+{
+    global $connection;
+
+    $productsQuery = $fquery;
+    $productsList = mysqli_query($connection, $productsQuery);
+
+    $productsImgQuery = "SELECT * FROM product_images";
+    $productsImgList = mysqli_query($connection, $productsImgQuery);
+
+    $productVarQuery = "SELECT * FROM product_variants";
+    $productVarList = mysqli_query($connection, $productVarQuery);
+
+    $products = [];
+    while ($row = mysqli_fetch_assoc($productsList)) {
+        $products[] = [
+            'id' => $row['prod_id'],
+            'title' => $row['prod_title'],
+            'content' => $row['prod_content']
+        ];
+    }
+
+    $productsImages = [];
+    while ($row = mysqli_fetch_assoc($productsImgList)) {
+        $productsImages[] = [
+            'id' => $row['img_id'],
+            'content' => $row['img_content'],
+            'prod_id' => $row['prod_id'],
+            'var_id' => $row['var_id']
+        ];
+    }
+
+    $productVariants = [];
+    while ($row = mysqli_fetch_assoc($productVarList)) {
+        $productVariants[] = [
+            'id' => $row['var_id'],
+            'title' => $row['var_title'],
+            'content' => $row['var_content'],
+            'prod_id' => $row['prod_id']
+        ];
+    }
+
+    $results = [];
+    foreach ($products as $product) {
+        $images = [];
+        $variants = [];
+        foreach ($productsImages as $productsImage) {
+            if ($productsImage['prod_id'] == $product['id']) {
+                $images[] = $productsImage;
+            }
+        }
+        foreach ($productVariants as $productVariant) {
+            if ($productVariant['prod_id'] == $product['id']) {
+                $variants[] = $productVariant;
+            }
+        }
+        $results[] = [
+            'id' => $product['id'],
+            'title' => $product['title'],
+            'content' => $product['content'],
+            'images' => $images,
+            'variants' => $variants
+        ];
+    }
+    return $results;
+}
+
 
