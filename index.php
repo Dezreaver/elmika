@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <?php $posts = printLatestNews("SELECT * FROM news LIMIT 3", true); ?>
+                <?php $posts = printLatestNews("SELECT * FROM news LIMIT 3", 'small'); ?>
 
                 <div class="row">
                     <?php foreach($posts as $post):?>

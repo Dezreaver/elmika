@@ -1,12 +1,13 @@
-<div class="col-md-4">
-    <div class="panel panel-default">
-        <ul class="list-group">
-            <li class="list-group-item"><a href="#">Project One</a></li>
-            <li class="list-group-item"><a href="#">Project Two</a></li>
-            <li class="list-group-item"><a href="#">Project Three</a></li>
-            <li class="list-group-item"><a href="#">Project Four</a></li>
-            <li class="list-group-item"><a href="#">Project Five</a></li>
-            <li class="list-group-item"><a href="#">Project Six</a></li>
-        </ul>
+<?php $sidePosts = printLatestNews("SELECT * FROM news LIMIT 10", 'medium'); ?>
+
+<div class="col-sm-3 offset-sm-1">
+    <div class="sidebar-module">
+        <h4>Latest Posts</h4>
+        <ol class="list-unstyled">
+            <?php $sidePosts = printLatestNews("SELECT * FROM news LIMIT 10", 'medium'); ?>
+            <?php foreach ($sidePosts as $sidePost): ?>
+                <li><a href="post.php?p_id=<?=$sidePost['id'];?>"><?= $sidePost['heading']; ?></a></li>
+            <?php endforeach; ?>
+        </ol>
     </div>
 </div>

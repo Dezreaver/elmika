@@ -60,6 +60,12 @@ nav {
     transform: translateY(-10px) scale(1.02);
 }
 
+/*POSTS PAGE*/
+/*Pagination*/
+.pagination li .active-link {
+    background: #000 !important;
+}
+
 /*Representatives*/
 
 #rep-button-block {
