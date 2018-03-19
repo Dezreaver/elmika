@@ -27,7 +27,7 @@ function printLatestNews($fquery, $size)
     }
     return $rows;
 }
-
+// News Page pagination
 function newsPagination($page) {
 
     global $connection;
@@ -50,6 +50,22 @@ function newsPagination($page) {
     ];
 }
 
+//Navigation
+function listNavigation(){
+    global $connection;
+
+    $query = "SELECT * FROM navigation";
+    $navItems = mysqli_query($connection, $query);
+
+    $rows = [];
+    while($row = mysqli_fetch_assoc($navItems)) {
+        $rows[] = [
+            'title' => $row['nav_title'],
+            'link' => $row['nav_link']
+        ];
+    }
+    return $rows;
+}
 //Representatives button block
 function listRepresentatives()
 {

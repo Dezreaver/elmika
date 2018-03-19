@@ -1,6 +1,8 @@
 <!-- Header -->
-
-<?php include "includes/header.php" ?>
+<?php
+    $current = "products";
+    include "includes/header.php";
+?>
 
 <!-- Body -->
 

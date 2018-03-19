@@ -1,33 +1,65 @@
 <!-- Header -->
-
-<?php include "includes/header.php"; ?>
+<?php
+    $current = "home";
+    include "includes/header.php";
+?>
 
 <div id="main-content" class="container">
 
 
+    <?php
+    $query = "SELECT * FROM carousel";
+    $carouselList = mysqli_query($connection, $query);
+
+    $carouselItems = [];
+    while($row = mysqli_fetch_assoc($carouselList)) {
+        $carouselItems[] = [
+            'id' => $row['item_id'],
+            'image' => $row['item_image'],
+            'heading' => $row['item_heading'],
+            'description' => $row['item_description'],
+            'prod_id' => $row['prod_id']
+        ];
+    }
+    $current = "home";
+    $count = 0;
+    ?>
+
     <section id="carousel">
         <!-- Carousel -->
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <?php foreach($carouselItems as $carouselItem): ?>
+                    <li data-target="#myCarousel" data-slide-to="<?=$carouselItem['id']; ?>"</li>
+                <?php endforeach; ?>
             </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="images/carousel1.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="images/carousel2.jpg" alt="Second slide">
-                </div>
+            <div class="carousel-inner" role="listbox">
+                <?php foreach($carouselItems as $carouselItem): ?>
+                    <?php $count++; ?>
+                    <div class="carousel-item <?=($count == 1) ? 'active' : ''; ?>">
+                        <a href="product.php?p_id=<?=$carouselItem['prod_id'];?>">
+                            <img class="d-block w-100" src="images/carousel/<?=$carouselItem['image']; ?>" alt="First slide">
+                            <div class="row">
+                                <div class="col-md-4 pull-left">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h4><?=$carouselItem['heading']; ?></h4>
+                                        <p><?=$carouselItem['description']; ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
+            <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                <div style="font-size:2em; color:rgba(48, 48, 48, 0.8);">
+                    <i class="fa fa-chevron-left"></i>
+                </div>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
+            <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                <div style="font-size:2em; color:rgba(48, 48, 48, 0.8);">
+                    <i class="fa fa-chevron-right"></i>
+                </div>
             </a>
         </div>
 

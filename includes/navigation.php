@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+<nav class="navbar navbar-expand-md fixed-top navbar-custom">
     <div class="container">
         <a class="navbar-brand" href="#">
             <img src="images/logo.gif" alt="Elmika Logo">
@@ -11,24 +11,14 @@
             <div class="navbar-nav ml-auto">
 
                 <?php
-                    $query = "SELECT * FROM navigation";
-                    $navItems = mysqli_query($connection, $query);
-
-                    $rows = [];
-                    while($row = mysqli_fetch_assoc($navItems)) {
-                        $rows[] = [
-                            'title' => $row['nav_title'],
-                            'link' => $row['nav_link']
-                        ];
-                    }
+                    $navs = listNavigation();
                 ?>
 
-                <?php foreach($rows as $row):?>
+                <?php foreach($navs as $nav):?>
 
-                        <a class="nav-item nav-link" href="<?=$row['link']; ?>"><?=$row['title']; ?></a>
+                        <a class="nav-item nav-link <?=($nav['title'] == $current) ? 'active' : ''; ?>" href="<?=$nav['link']; ?>"><?=$nav['title']; ?></a>
 
                 <?php endforeach; ?>
-
             </div>
         </div>
     </div>

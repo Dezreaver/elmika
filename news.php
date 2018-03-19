@@ -1,6 +1,8 @@
 <!-- Header -->
-
-<?php include "includes/header.php" ?>
+<?php
+    $current = "news";
+    include "includes/header.php";
+?>
 
 <?php
 if (isset($_GET['page'])) {
@@ -38,7 +40,7 @@ $newsCount = $paginationArr[1];
             </div>
         </div>
     </div>
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation">
         <ul class="pagination">
             <?php for ($i = 1; $i <= $newsCount; $i++): ?>
                 <li class="page-item">

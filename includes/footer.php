@@ -14,14 +14,16 @@
             </div>
 
             <div class="col-md-4">
-                <h3>Navigation</h3>
-                <ul>
-                    <li>Home</li>
-                    <li>Products</li>
-                    <li>About Us</li>
-                    <li>Representatives</li>
-                    <li>Contacts</li>
-                </ul>
+                <h3>Links</h3>
+                <?php
+                $navs = listNavigation();
+                ?>
+
+                <?php foreach($navs as $nav):?>
+
+                    <a class="nav-item nav-link" href="<?=$nav['link']; ?>"><?=$nav['title']; ?></a>
+
+                <?php endforeach; ?>
             </div>
 
             <div class="col-md-4">

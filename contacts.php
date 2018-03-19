@@ -1,6 +1,8 @@
 <!-- Header -->
-
-<?php include "includes/header.php" ?>
+<?php
+    $current = "contacts";
+    include "includes/header.php";
+?>
 
 <!-- Body -->
 

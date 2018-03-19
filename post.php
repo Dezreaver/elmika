@@ -1,6 +1,8 @@
 <!-- Header -->
-
-<?php include "includes/header.php" ?>
+<?php
+    $current = "news";
+    include "includes/header.php";
+?>
 
 <!-- Body -->
 <?php

@@ -12,21 +12,47 @@ body {
 }
 
 /* Navigation */
-
-nav {
-    border-bottom: 2px solid #0094FA;
+.navbar {
+    margin-bottom: 0;
+    border-bottom: 1px solid #0094FA;
+    border-radius: 0;
+    font-size: 1.1em;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
 }
+
+.navbar-custom {
+    background-color: #f8f9fa;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.navbar-custom .nav-item.active,
+.navbar-custom .nav-item:hover {
+    color: #0094FA;
+}
+
+/* Carousel */
+.carousel-caption {
+    color: #fff;
+    background-color: rgba(48, 48, 48, 0.8);
+    text-align: left;
+}
+
+
+
+/* Main */
 
 #slogan {
     background-color: #0094FA;
     padding: 5px 0;
 }
 
-/* Carousel */
-
-
-
-/* Main */
+#slogan > h3 {
+    margin: 0.2em;
+}
 
 #main-content {
     flex: 1 0 auto;
@@ -99,7 +125,20 @@ footer {
     padding: 10px 0;
 }
 
+footer div.container > p {
+    margin: 0;
+}
+
 /* Text */
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
 
 nav a.nav-link {
     text-transform: uppercase;
