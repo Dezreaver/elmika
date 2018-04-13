@@ -1,5 +1,27 @@
 <?php
 
+//Main page categories
+function printCategories()
+{
+
+    global $connection;
+
+    $query = "SELECT * FROM categories";
+    $listCategories = mysqli_query($connection, $query);
+
+    $categories = [];
+    while ($row = mysqli_fetch_assoc($listCategories)) {
+        $categories[] = [
+            'id' => $row['cat_id'],
+            'title' => $row['cat_title'],
+            'image' => $row['cat_image'],
+            'link' => $row['cat_link']
+        ];
+    }
+
+    return $categories;
+}
+
 //News logic for Main page and News page
 function printLatestNews($fquery, $size)
 {
@@ -10,7 +32,7 @@ function printLatestNews($fquery, $size)
 
     $rows = [];
     while ($row = mysqli_fetch_assoc($selectNews)) {
-        if($size == 'small') {
+        if ($size == 'small') {
             $content = $row['news_content_small'];
         } elseif ($size == 'medium') {
             $content = $row['news_content_medium'];
@@ -27,8 +49,10 @@ function printLatestNews($fquery, $size)
     }
     return $rows;
 }
+
 // News Page pagination
-function newsPagination($page) {
+function newsPagination($page)
+{
 
     global $connection;
 
@@ -51,14 +75,15 @@ function newsPagination($page) {
 }
 
 //Navigation
-function listNavigation(){
+function listNavigation()
+{
     global $connection;
 
     $query = "SELECT * FROM navigation";
     $navItems = mysqli_query($connection, $query);
 
     $rows = [];
-    while($row = mysqli_fetch_assoc($navItems)) {
+    while ($row = mysqli_fetch_assoc($navItems)) {
         $rows[] = [
             'title' => $row['nav_title'],
             'link' => $row['nav_link']
@@ -66,118 +91,121 @@ function listNavigation(){
     }
     return $rows;
 }
+
 //Representatives button block
 function listRepresentatives()
 {
-global $connection;
+    global $connection;
 
-$countryQuery = "SELECT * FROM rep_countries";
-$countryList = mysqli_query($connection, $countryQuery);
+    $countryQuery = "SELECT * FROM rep_countries";
+    $countryList = mysqli_query($connection, $countryQuery);
 
-$countries = [];
-while($row = mysqli_fetch_assoc($countryList)) {
-$countries[] = [
-'id' => $row['country_id'],
-'name' => $row['country_name']
-];
-}
+    $countries = [];
+    while ($row = mysqli_fetch_assoc($countryList)) {
+        $countries[] = [
+            'id' => $row['country_id'],
+            'name' => $row['country_name']
+        ];
+    }
 
-$repQuery = "SELECT * FROM rep_info";
-$repList = mysqli_query($connection, $repQuery);
+    $repQuery = "SELECT * FROM rep_info";
+    $repList = mysqli_query($connection, $repQuery);
 
-$representatives = [];
-while($row = mysqli_fetch_assoc($repList)){
-$representatives[] = [
-'info' => $row['rep_content'],
-'url' => $row['rep_url'],
-'country_id' => $row['country_id']
-];
-}
+    $representatives = [];
+    while ($row = mysqli_fetch_assoc($repList)) {
+        $representatives[] = [
+            'info' => $row['rep_content'],
+            'url' => $row['rep_url'],
+            'country_id' => $row['country_id']
+        ];
+    }
 
-$result = [];
-foreach($countries as $country) {
-$reps = [];
-foreach($representatives as $representative) {
-if ($representative['country_id'] == $country['id']) {
-$reps[] = $representative;
-}
-}
+    $result = [];
+    foreach ($countries as $country) {
+        $reps = [];
+        foreach ($representatives as $representative) {
+            if ($representative['country_id'] == $country['id']) {
+                $reps[] = $representative;
+            }
+        }
 
-$result[] = [
-'country_id' => $country['id'],
-'name' => $country['name'],
-'reps' => $reps
-];
-}
-return $result;
+        $result[] = [
+            'country_id' => $country['id'],
+            'name' => $country['name'],
+            'reps' => $reps
+        ];
+    }
+    return $result;
 }
 
 //Products page display, product page and model variants
 function allProductsLogic($fquery)
 {
-global $connection;
+    global $connection;
 
-$productsQuery = $fquery;
-$productsList = mysqli_query($connection, $productsQuery);
+    $productsQuery = $fquery;
+    $productsList = mysqli_query($connection, $productsQuery);
 
-$productsImgQuery = "SELECT * FROM product_images";
-$productsImgList = mysqli_query($connection, $productsImgQuery);
+    $productsImgQuery = "SELECT * FROM product_images";
+    $productsImgList = mysqli_query($connection, $productsImgQuery);
 
-$productVarQuery = "SELECT * FROM product_variants";
-$productVarList = mysqli_query($connection, $productVarQuery);
+    $productVarQuery = "SELECT * FROM product_variants";
+    $productVarList = mysqli_query($connection, $productVarQuery);
 
-$products = [];
-while ($row = mysqli_fetch_assoc($productsList)) {
-$products[] = [
-'id' => $row['prod_id'],
-'title' => $row['prod_title'],
-'content' => $row['prod_content']
-];
-}
+    $products = [];
+    while ($row = mysqli_fetch_assoc($productsList)) {
+        $products[] = [
+            'id' => $row['prod_id'],
+            'title' => $row['prod_title'],
+            'content' => $row['prod_content'],
+            'table' => $row['table_name']
+        ];
+    }
 
-$productsImages = [];
-while ($row = mysqli_fetch_assoc($productsImgList)) {
-$productsImages[] = [
-'id' => $row['img_id'],
-'content' => $row['img_content'],
-'prod_id' => $row['prod_id'],
-'var_id' => $row['var_id']
-];
-}
+    $productsImages = [];
+    while ($row = mysqli_fetch_assoc($productsImgList)) {
+        $productsImages[] = [
+            'id' => $row['img_id'],
+            'content' => $row['img_content'],
+            'prod_id' => $row['prod_id'],
+            'var_id' => $row['var_id']
+        ];
+    }
 
-$productVariants = [];
-while ($row = mysqli_fetch_assoc($productVarList)) {
-$productVariants[] = [
-'id' => $row['var_id'],
-'title' => $row['var_title'],
-'content' => $row['var_content'],
-'prod_id' => $row['prod_id']
-];
-}
+    $productVariants = [];
+    while ($row = mysqli_fetch_assoc($productVarList)) {
+        $productVariants[] = [
+            'id' => $row['var_id'],
+            'title' => $row['var_title'],
+            'content' => $row['var_content'],
+            'prod_id' => $row['prod_id']
+        ];
+    }
 
-$results = [];
-foreach ($products as $product) {
-$images = [];
-$variants = [];
-foreach ($productsImages as $productsImage) {
-if ($productsImage['prod_id'] == $product['id']) {
-$images[] = $productsImage;
-}
-}
-foreach ($productVariants as $productVariant) {
-if ($productVariant['prod_id'] == $product['id']) {
-$variants[] = $productVariant;
-}
-}
-$results[] = [
-'id' => $product['id'],
-'title' => $product['title'],
-'content' => $product['content'],
-'images' => $images,
-'variants' => $variants
-];
-}
-return $results;
+    $results = [];
+    foreach ($products as $product) {
+        $images = [];
+        $variants = [];
+        foreach ($productsImages as $productsImage) {
+            if ($productsImage['prod_id'] == $product['id']) {
+                $images[] = $productsImage;
+            }
+        }
+        foreach ($productVariants as $productVariant) {
+            if ($productVariant['prod_id'] == $product['id']) {
+                $variants[] = $productVariant;
+            }
+        }
+        $results[] = [
+            'id' => $product['id'],
+            'title' => $product['title'],
+            'content' => $product['content'],
+            'table' => $product['table'],
+            'images' => $images,
+            'variants' => $variants
+        ];
+    }
+    return $results;
 }
 
 

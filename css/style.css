@@ -1,3 +1,4 @@
+/* GENERAL */
 html {
     height: 100%;
 }
@@ -11,7 +12,17 @@ body {
 
 }
 
-/* Navigation */
+#main-content {
+    flex: 1 0 auto;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+/* NAVIGATION */
 .navbar {
     margin-bottom: 0;
     border-bottom: 1px solid #0094FA;
@@ -34,7 +45,8 @@ body {
     color: #0094FA;
 }
 
-/* Carousel */
+
+/* INDEX PAGE CAROUSEL */
 .carousel-caption {
     color: #fff;
     background-color: rgba(48, 48, 48, 0.8);
@@ -43,7 +55,7 @@ body {
 
 
 
-/* Main */
+/* INDEX PAGE OTHER */
 
 #slogan {
     background-color: #0094FA;
@@ -51,28 +63,38 @@ body {
 }
 
 #slogan > h3 {
-    margin: 0.2em;
+    margin: 5px;
 }
 
-#main-content {
-    flex: 1 0 auto;
-}
-
-#news, #about_us {
+#index-news, #about-us {
     padding: 50px 20px;
 }
 
-#news h1 {
-    font-size: 3em;
+#index-news .row-eq-heigh > .col-md-4 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+
+.col-md-4 {
+    position: relative;
+}
+
+#index-news h2,
+#about-us h2{
+    font-size: 2em;
     padding-bottom: 30px;
+    font-style: italic;
 }
 
-#news h2 a {
+.read-more {
+    position: absolute;
+    bottom: 0;
+}
+
+.read-more a {
     color: #0094FA;
-}
-
-#news .col-md-6 {
-    padding: 0px 15px 15px 15px;
 }
 
 .card {

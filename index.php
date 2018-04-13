@@ -1,10 +1,10 @@
 <!-- Header -->
 <?php
-    $current = "home";
-    include "includes/header.php";
+$current = "home";
+include "includes/header.php";
 ?>
 
-<div id="main-content" class="container">
+<div id="main-content" class="container index">
 
 
     <?php
@@ -12,7 +12,7 @@
     $carouselList = mysqli_query($connection, $query);
 
     $carouselItems = [];
-    while($row = mysqli_fetch_assoc($carouselList)) {
+    while ($row = mysqli_fetch_assoc($carouselList)) {
         $carouselItems[] = [
             'id' => $row['item_id'],
             'image' => $row['item_image'],
@@ -25,68 +25,86 @@
     $count = 0;
     ?>
 
-    <section id="carousel">
-        <!-- Carousel -->
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <?php foreach($carouselItems as $carouselItem): ?>
-                    <li data-target="#myCarousel" data-slide-to="<?=$carouselItem['id']; ?>"</li>
-                <?php endforeach; ?>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <?php foreach($carouselItems as $carouselItem): ?>
-                    <?php $count++; ?>
-                    <div class="carousel-item <?=($count == 1) ? 'active' : ''; ?>">
-                        <a href="product.php?p_id=<?=$carouselItem['prod_id'];?>">
-                            <img class="d-block w-100" src="images/carousel/<?=$carouselItem['image']; ?>" alt="First slide">
-                            <div class="row">
-                                <div class="col-md-4 pull-left">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h4><?=$carouselItem['heading']; ?></h4>
-                                        <p><?=$carouselItem['description']; ?></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-                <div style="font-size:2em; color:rgba(48, 48, 48, 0.8);">
-                    <i class="fa fa-chevron-left"></i>
-                </div>
-            </a>
-            <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-                <div style="font-size:2em; color:rgba(48, 48, 48, 0.8);">
-                    <i class="fa fa-chevron-right"></i>
-                </div>
-            </a>
-        </div>
-
-        <div id="slogan">
-            <h3 class="text-center"><i>Millimeter-Wave Measurement Instruments and Waveguide Components</i></h3>
-        </div>
-
-    </section>
-
-    <section id="news">
-        <h2>Latest News</h2>
+    <section>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-9">
+                <!-- Carousel -->
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <?php foreach ($carouselItems as $carouselItem): ?>
+                            <li data-target="#myCarousel" data-slide-to="<?= $carouselItem['id']; ?>"</li>
+                        <?php endforeach; ?>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <?php foreach ($carouselItems as $carouselItem): ?>
+                            <?php $count++; ?>
+                            <div class="carousel-item <?= ($count == 1) ? 'active' : ''; ?>">
+                                <a href="product.php?p_id=<?= $carouselItem['prod_id']; ?>">
+                                    <img class="d-block w-100" src="images/carousel/<?= $carouselItem['image']; ?>"
+                                         alt="First slide">
+                                    <div class="row">
+                                        <div class="col-md-4 pull-left">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h4><?= $carouselItem['heading']; ?></h4>
+                                                <p><?= $carouselItem['description']; ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                        <div style="font-size:2em; color:rgba(48, 48, 48, 0.8);">
+                            <i class="fa fa-chevron-left"></i>
+                        </div>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                        <div style="font-size:2em; color:rgba(48, 48, 48, 0.8);">
+                            <i class="fa fa-chevron-right"></i>
+                        </div>
+                    </a>
+                </div>
 
+                <div id="slogan">
+                    <h3 class="text-center"><i>Millimeter-Wave Measurement Instruments and Waveguide Components</i></h3>
+                </div>
+
+                <div>
+                    <?php $results = printCategories(); ?>
+
+                        <div class="row">
+                            <?php foreach ($results as $result): ?>
+                                <div class="col-md-4">
+                                <a href="category.php?c_id=<?= $result['id']; ?>">
+                                    <div class="card mb-4 box-shadow">
+                                        <img class="card-img-top"
+                                             src="images/categories/<?= $result['image']; ?>"
+                                             alt="<?= $result['title']; ?> image">
+                                        <div class="card-body">
+                                            <p><?= $result['title']; ?></p>
+                                        </div>
+                                    </div>
+                                </a>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                </div>
+            </div>
+            <div class="col-md-3">
                 <?php $posts = printLatestNews("SELECT * FROM news LIMIT 3", 'small'); ?>
 
-                <div class="row">
-                    <?php foreach($posts as $post):?>
-                        <div class="col-lg-4">
+                <div>
+                    <?php foreach ($posts as $post): ?>
+                        <div>
                             <h3>
-                                <?=$post['heading']; ?>
+                                <?= $post['heading']; ?>
                             </h3>
                             <p>
-                                <?=$post['content']; ?>
+                                <?= $post['content']; ?>
                             </p>
-                            <a class="btn btn-primary" href="#" role="button">
-                                Read More &raquo;
+                            <a class="read-more" href="#">
+                                Continue reading &raquo;
                             </a>
                         </div>
                     <?php endforeach; ?>
@@ -95,7 +113,11 @@
         </div>
     </section>
 
-    <section id="about_us">
+    <section id="index-news">
+
+    </section>
+
+    <section id="about-us">
         <h2>About Us</h2>
         <p>Elmika was established in 1993 as a joint stock company.</p>
         <p>

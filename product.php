@@ -1,7 +1,7 @@
 <!-- Header -->
 <?php
-    $current = "products";
-    include "includes/header.php";
+$current = "products";
+include "includes/header.php";
 ?>
 
 <!-- Body -->
@@ -37,38 +37,37 @@ $results = allProductsLogic("SELECT * FROM products WHERE prod_id = $prod_id");
                 </div>
             </div>
         </div>
-        <h3>Variations</h3>
-        <div class="row">
-            <?php foreach ($result['variants'] as $variant): ?>
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-primary"
-                            data-toggle="modal" data-target="#<?= str_replace(' ', '', $variant['title']); ?>">
-                        <?= $variant['title']; ?>
-                    </button>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="<?= str_replace(' ', '', $variant['title']); ?>" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle"><?= $variant['title']; ?></h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p><?= $variant['content']; ?></p>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
     <?php endforeach; ?>
+        <h3>Variations</h3>
+
+        <?php
+        $tableName = $results[0]['table'];
+        $query = "SELECT * FROM $tableName";
+        $listTableData = mysqli_query($connection, $query);
+
+        $table = [];
+        while ($row = mysqli_fetch_assoc($listTableData)) {
+            $table[] = $row;
+        }
+
+        echo "<table class='table table-bordered'>";
+        foreach ($table as $rowIndex => $row) {
+            if ($rowIndex == 0) {
+                echo "<thead><tr>";
+                foreach ($row as $columnName => $cell) {
+                    echo "<th scope='col'>$columnName</th>";
+                }
+                echo "</tr></thead>";
+            }
+            echo "<tr>";
+            foreach ($row as $columnName => $cell) {
+                echo "<td>$cell</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
+        ?>
+
 </div>
 
 
